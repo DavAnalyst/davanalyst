@@ -1,0 +1,98 @@
+@import "tailwindcss";
+
+@theme {
+  --color-bg: #0A0A0F;
+  --color-primary: #6366F1;
+  --color-cyan: #06B6D4;
+  --color-magenta: #D946EF;
+  --color-text: #F8FAFC;
+  --color-muted: #94A3B8;
+  --color-surface: #1E1E2E;
+  --color-border: #2D2D3D;
+
+  --font-sans: "Inter", sans-serif;
+  --font-display: "Space Grotesk", sans-serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    background-color: #0A0A0F;
+    color: #F8FAFC;
+    font-family: "Inter", sans-serif;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: "Space Grotesk", sans-serif;
+    letter-spacing: -0.02em;
+  }
+
+  :focus-visible {
+    outline: 2px solid #6366F1;
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  ::selection {
+    background-color: rgba(99, 102, 241, 0.35);
+    color: #F8FAFC;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+    html {
+      scroll-behavior: auto;
+    }
+  }
+}
+
+/* Circuit grid overlay utility */
+@layer utilities {
+  .bg-circuit-grid {
+    background-image:
+      linear-gradient(rgba(99, 102, 241, 0.07) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(99, 102, 241, 0.07) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+}
+
+/* Blob mesh gradient animations */
+@keyframes blob-1 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33%       { transform: translate(45px, -65px) scale(1.12); }
+  66%       { transform: translate(-30px, 35px) scale(0.9); }
+}
+
+@keyframes blob-2 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33%       { transform: translate(-55px, 45px) scale(0.93); }
+  66%       { transform: translate(35px, -45px) scale(1.1); }
+}
+
+@keyframes blob-3 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50%       { transform: translate(40px, 40px) scale(1.15); }
+}
+
+@keyframes blob-4 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  40%       { transform: translate(-25px, -35px) scale(0.92); }
+  80%       { transform: translate(30px, 20px) scale(1.08); }
+}
+
+/* WhatsApp button pulse */
+@keyframes pulse-ring {
+  0%   { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.55); }
+  70%  { box-shadow: 0 0 0 16px rgba(37, 211, 102, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+}
