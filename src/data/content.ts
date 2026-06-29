@@ -1,5 +1,5 @@
 export const WHATSAPP_URL =
-  'https://wa.me/571234567890?text=Hola%2C%20vi%20tu%20portafolio%20y%20quiero%20cotizar%20un%20proyecto';
+  'https://wa.me/573219491095?text=Hola%2C%20vi%20tu%20portafolio%20y%20quiero%20cotizar%20un%20proyecto';
 
 export const SOCIAL = {
   github: 'https://github.com/',

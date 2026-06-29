@@ -56,25 +56,6 @@ export default function About() {
               generan impacto medible desde el primer día.
             </p>
 
-            {/* Destacados */}
-            <div className="grid grid-cols-2 gap-4 pt-4">
-              {[
-                { value: '3+', label: 'Años de experiencia' },
-                { value: '20+', label: 'Proyectos entregados' },
-                { value: '100%', label: 'Proyectos en producción' },
-                { value: '24/7', label: 'Bots operando' },
-              ].map((stat) => (
-                <div
-                  key={stat.label}
-                  className="p-4 rounded-xl bg-surface border border-border text-center"
-                >
-                  <span className="font-display font-bold text-2xl text-primary block">
-                    {stat.value}
-                  </span>
-                  <span className="text-muted text-xs mt-0.5 block">{stat.label}</span>
-                </div>
-              ))}
-            </div>
           </motion.div>
 
           {/* Tech stack */}
