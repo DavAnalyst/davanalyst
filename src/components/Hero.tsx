@@ -1,9 +1,43 @@
+import { lazy, Suspense, useEffect, useRef, useState } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
 import { MessageCircle, ArrowDown } from 'lucide-react';
 import { WHATSAPP_URL } from '../data/content';
+import HeroFallback from './three/HeroFallback';
+import CanvasErrorBoundary from './three/CanvasErrorBoundary';
+
+const HeroScene = lazy(() => import('./three/HeroScene'));
+
+function detectCanUse3D(): boolean {
+  if (typeof window === 'undefined') return false;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return false;
+  if (window.matchMedia('(pointer: coarse)').matches) return false;
+  try {
+    const canvas = document.createElement('canvas');
+    return !!(canvas.getContext('webgl2') || canvas.getContext('webgl'));
+  } catch {
+    return false;
+  }
+}
 
 export default function Hero() {
   const reduce = useReducedMotion();
+  const sectionRef = useRef<HTMLElement>(null);
+  const [use3D, setUse3D] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
+
+  useEffect(() => {
+    setUse3D(detectCanUse3D());
+  }, []);
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+    const observer = new IntersectionObserver(([entry]) => setIsVisible(entry.isIntersecting), {
+      threshold: 0,
+    });
+    observer.observe(section);
+    return () => observer.disconnect();
+  }, []);
 
   const ease: [number, number, number, number] = [0.22, 1, 0.36, 1];
   const fadeUp = (delay = 0) => ({
@@ -14,52 +48,20 @@ export default function Hero() {
 
   return (
     <section
+      ref={sectionRef}
       id="inicio"
       className="relative min-h-screen flex items-center justify-center overflow-hidden bg-circuit-grid"
     >
-      {/* Mesh gradient blobs */}
-      <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
-        <div
-          className="absolute w-[700px] h-[700px] rounded-full opacity-25"
-          style={{
-            background: 'radial-gradient(circle, #6366F1 0%, transparent 70%)',
-            left: '5%',
-            top: '10%',
-            animation: reduce ? 'none' : 'blob-1 14s ease-in-out infinite',
-            filter: 'blur(60px)',
-          }}
-        />
-        <div
-          className="absolute w-[550px] h-[550px] rounded-full opacity-20"
-          style={{
-            background: 'radial-gradient(circle, #06B6D4 0%, transparent 70%)',
-            right: '5%',
-            top: '5%',
-            animation: reduce ? 'none' : 'blob-2 18s ease-in-out infinite',
-            filter: 'blur(70px)',
-          }}
-        />
-        <div
-          className="absolute w-[400px] h-[400px] rounded-full opacity-15"
-          style={{
-            background: 'radial-gradient(circle, #D946EF 0%, transparent 70%)',
-            right: '20%',
-            bottom: '15%',
-            animation: reduce ? 'none' : 'blob-3 12s ease-in-out infinite',
-            filter: 'blur(80px)',
-          }}
-        />
-        <div
-          className="absolute w-[500px] h-[500px] rounded-full opacity-15"
-          style={{
-            background: 'radial-gradient(circle, #3B82F6 0%, transparent 70%)',
-            left: '30%',
-            bottom: '5%',
-            animation: reduce ? 'none' : 'blob-4 16s ease-in-out infinite',
-            filter: 'blur(75px)',
-          }}
-        />
-      </div>
+      {/* 3D scene / gradient fallback background */}
+      {use3D ? (
+        <CanvasErrorBoundary fallback={<HeroFallback reduce={reduce} />}>
+          <Suspense fallback={<HeroFallback reduce={reduce} />}>
+            <HeroScene isVisible={isVisible} eventSource={sectionRef} />
+          </Suspense>
+        </CanvasErrorBoundary>
+      ) : (
+        <HeroFallback reduce={reduce} />
+      )}
 
       {/* Content */}
       <div className="relative z-10 max-w-4xl mx-auto px-5 sm:px-8 text-center mt-[20vh]">
