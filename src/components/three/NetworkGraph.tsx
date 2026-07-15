@@ -2,7 +2,7 @@ import { useMemo, useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
 
-const RADIUS = 1.15;
+const RADIUS = 1.75;
 const DETAIL = 1;
 
 export default function NetworkGraph() {
@@ -22,10 +22,10 @@ export default function NetworkGraph() {
 
   useFrame((state) => {
     if (!groupRef.current) return;
-    const targetX = state.pointer.y * 0.35;
-    const targetY = state.pointer.x * 0.45;
-    groupRef.current.rotation.x = THREE.MathUtils.lerp(groupRef.current.rotation.x, targetX, 0.05);
-    groupRef.current.rotation.y = THREE.MathUtils.lerp(groupRef.current.rotation.y, targetY, 0.05);
+    const targetX = state.pointer.y * 0.7;
+    const targetY = state.pointer.x * 0.9;
+    groupRef.current.rotation.x = THREE.MathUtils.lerp(groupRef.current.rotation.x, targetX, 0.1);
+    groupRef.current.rotation.y = THREE.MathUtils.lerp(groupRef.current.rotation.y, targetY, 0.1);
     groupRef.current.rotation.z += 0.0008;
   });
 
