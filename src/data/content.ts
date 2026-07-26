@@ -36,6 +36,16 @@ export const services = [
 
 export const projects = [
   {
+    name: 'Don XL',
+    description:
+      'Sitio web para restaurante de hot dogs con carta digital interactiva, personalización de pedidos y diseño urbano.',
+    stack: [],
+    demo: 'https://www.donxl.com',
+    repo: null,
+    image: '/projects/DonXL.png',
+    gradient: 'from-yellow-500 via-orange-500 to-red-500',
+  },
+  {
     name: 'Chamánico',
     description:
       'Sitio web para restaurante con carta digital, sección de reservas y presentación visual de experiencia gastronómica.',
@@ -54,16 +64,6 @@ export const projects = [
     repo: null,
     image: '/projects/fisioEnergy.png',
     gradient: 'from-cyan-500 via-teal-500 to-emerald-500',
-  },
-  {
-    name: 'Don XL',
-    description:
-      'Sitio web para restaurante de hot dogs con carta digital interactiva, personalización de pedidos y diseño urbano.',
-    stack: [],
-    demo: 'https://www.donxl.com',
-    repo: null,
-    image: '/projects/DonXL.png',
-    gradient: 'from-yellow-500 via-orange-500 to-red-500',
   },
   {
     name: 'Café Herencia',

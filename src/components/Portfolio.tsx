@@ -85,7 +85,7 @@ function ProjectCard({
             className="flex-1 flex items-center justify-center gap-1.5 text-sm font-semibold text-primary hover:text-cyan transition-colors py-2 rounded-lg hover:bg-primary/10"
           >
             <ExternalLink size={14} />
-            Ver demo
+            Ver Web
           </a>
           {repo && (
             <a
