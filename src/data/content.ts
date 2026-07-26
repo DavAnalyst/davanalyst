@@ -3,7 +3,7 @@ export const WHATSAPP_URL =
 
 export const SOCIAL = {
   github: 'https://github.com/',
-  linkedin: 'https://linkedin.com/in/',
+  linkedin: 'https://www.linkedin.com/in/david-nieves-castellanos-1b6638176/',
   email: 'contacto@davanalyst.dev',
 };
 
