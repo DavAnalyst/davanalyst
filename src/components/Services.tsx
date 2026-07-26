@@ -30,7 +30,7 @@ function ServiceCard({
       viewport={{ once: true, margin: '-60px' }}
       transition={{ duration: 0.5, delay: index * 0.1, ease: [0.22, 1, 0.36, 1] }}
       whileHover={reduce ? {} : { y: -4 }}
-      className="group relative p-6 rounded-2xl bg-surface border border-border transition-all duration-300 hover:border-primary/70 hover:shadow-[0_0_30px_rgba(99,102,241,0.2),inset_0_0_30px_rgba(99,102,241,0.04)] cursor-default"
+      className="group relative p-6 rounded-2xl bg-surface border border-border shadow-elevated transition-all duration-300 hover:border-primary/70 hover:shadow-[0_0_30px_rgba(99,102,241,0.2),inset_0_0_30px_rgba(99,102,241,0.04)] cursor-default"
     >
       {/* Glow top line */}
       <div className="absolute top-0 left-6 right-6 h-px bg-gradient-to-r from-transparent via-primary/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />

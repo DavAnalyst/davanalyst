@@ -56,7 +56,7 @@ export default function Navbar() {
           href={WHATSAPP_URL}
           target="_blank"
           rel="noopener noreferrer"
-          className="hidden md:flex items-center gap-2 bg-primary hover:bg-primary/80 text-white text-sm font-semibold px-4 py-2 rounded-lg transition-all duration-200 hover:shadow-[0_0_24px_rgba(99,102,241,0.45)]"
+          className="hidden md:flex items-center gap-2 bg-primary hover:bg-primary/80 text-white text-sm font-semibold px-4 py-2 rounded-xl transition-all duration-200 hover:shadow-[0_0_24px_rgba(99,102,241,0.45)]"
         >
           <MessageCircle size={15} />
           Escribir por WhatsApp
@@ -65,7 +65,7 @@ export default function Navbar() {
         {/* Mobile hamburger */}
         <button
           onClick={() => setMenuOpen(!menuOpen)}
-          className="md:hidden text-muted hover:text-text transition-colors p-2 rounded-lg"
+          className="md:hidden flex items-center justify-center min-h-11 min-w-11 text-muted hover:text-text transition-colors rounded-lg"
           aria-label={menuOpen ? 'Cerrar menú' : 'Abrir menú'}
         >
           {menuOpen ? <X size={22} /> : <Menu size={22} />}
@@ -74,34 +74,36 @@ export default function Navbar() {
 
       {/* Mobile dropdown */}
       <div
-        className={`md:hidden overflow-hidden transition-all duration-300 ${
-          menuOpen ? 'max-h-80 opacity-100' : 'max-h-0 opacity-0'
-        } bg-surface/95 backdrop-blur-md border-b border-border/60`}
+        className={`md:hidden grid transition-[grid-template-rows] duration-300 ease-out ${
+          menuOpen ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'
+        } bg-bg/98 backdrop-blur-xl border-b border-border/60`}
       >
-        <ul className="flex flex-col px-5 py-4 gap-5">
-          {navLinks.map((link) => (
-            <li key={link.href}>
+        <div className="overflow-hidden">
+          <ul className="flex flex-col px-5 py-2">
+            {navLinks.map((link) => (
+              <li key={link.href} className="border-b border-border/40 last:border-b-0">
+                <a
+                  href={link.href}
+                  onClick={() => setMenuOpen(false)}
+                  className="text-muted hover:text-text text-sm font-medium transition-colors block py-3"
+                >
+                  {link.label}
+                </a>
+              </li>
+            ))}
+            <li className="py-4">
               <a
-                href={link.href}
-                onClick={() => setMenuOpen(false)}
-                className="text-muted hover:text-text text-sm font-medium transition-colors block"
+                href={WHATSAPP_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 bg-primary text-white text-sm font-semibold px-4 py-3 rounded-xl"
               >
-                {link.label}
+                <MessageCircle size={15} />
+                WhatsApp
               </a>
             </li>
-          ))}
-          <li>
-            <a
-              href={WHATSAPP_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 bg-primary text-white text-sm font-semibold px-4 py-2 rounded-lg"
-            >
-              <MessageCircle size={15} />
-              WhatsApp
-            </a>
-          </li>
-        </ul>
+          </ul>
+        </div>
       </div>
     </header>
   );

@@ -81,7 +81,7 @@ export default function About() {
             </div>
 
             {/* Visual decoration */}
-            <div className="mt-10 p-5 rounded-2xl border border-primary/20 bg-primary/5 backdrop-blur-sm">
+            <div className="mt-10 p-5 rounded-2xl border border-primary/20 bg-primary/5 backdrop-blur-sm shadow-elevated">
               <p className="text-primary/80 text-sm leading-relaxed">
                 "Creo en el código limpio, en las soluciones que escalan y en los clientes
                 satisfechos. Si tienes una idea, hablemos — puedo convertirla en realidad."

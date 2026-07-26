@@ -64,6 +64,10 @@
       linear-gradient(90deg, rgba(99, 102, 241, 0.07) 1px, transparent 1px);
     background-size: 60px 60px;
   }
+
+  .shadow-elevated {
+    box-shadow: 0 8px 30px -12px rgba(0, 0, 0, 0.45);
+  }
 }
 
 /* Blob mesh gradient animations */

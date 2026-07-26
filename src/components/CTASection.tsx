@@ -53,7 +53,7 @@ export default function CTASection() {
               href={WHATSAPP_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-3 bg-white text-primary font-bold text-lg px-8 py-4 rounded-2xl transition-all duration-300 hover:bg-white/90 hover:shadow-[0_0_40px_rgba(255,255,255,0.4)] hover:scale-105 active:scale-95"
+              className="inline-flex items-center gap-3 bg-white text-primary font-bold text-lg px-8 py-4 rounded-xl transition-all duration-300 hover:bg-white/90 hover:shadow-[0_0_40px_rgba(255,255,255,0.4)] hover:scale-105 active:scale-95"
             >
               <MessageCircle size={22} />
               Escribir por WhatsApp

@@ -64,7 +64,7 @@ export default function Hero() {
       )}
 
       {/* Content */}
-      <div className="relative z-10 max-w-4xl mx-auto px-5 sm:px-8 text-center mt-[20vh]">
+      <div className="relative z-10 max-w-4xl mx-auto px-5 sm:px-8 text-center mt-[14vh] sm:mt-[18vh] lg:mt-[20vh]">
         {/* Headline */}
         <motion.h1
           {...fadeUp(0)}
@@ -114,7 +114,7 @@ export default function Hero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.2, duration: 0.8 }}
-          className="mt-20 flex flex-col items-center gap-2 text-muted/50"
+          className="mt-12 sm:mt-16 lg:mt-20 flex flex-col items-center gap-2 text-muted/50"
         >
           <div className="w-px h-12 bg-gradient-to-b from-transparent to-muted/30" />
           <span className="text-xs tracking-widest uppercase">Scroll</span>

@@ -44,7 +44,7 @@ function ProjectCard({
       viewport={{ once: true, margin: '-60px' }}
       transition={{ duration: 0.55, delay: index * 0.12, ease: [0.22, 1, 0.36, 1] as [number,number,number,number] }}
       whileHover={reduce ? {} : { y: -5 }}
-      className="group flex flex-col rounded-2xl bg-surface border border-border overflow-hidden transition-all duration-300 hover:border-cyan/50 hover:shadow-[0_0_32px_rgba(6,182,212,0.15)]"
+      className="group flex flex-col rounded-2xl bg-surface border border-border shadow-elevated overflow-hidden transition-all duration-300 hover:border-cyan/50 hover:shadow-[0_0_32px_rgba(6,182,212,0.15)]"
     >
       {/* Preview — imagen real o gradiente */}
       <div className="relative h-52 overflow-hidden">
@@ -53,6 +53,8 @@ function ProjectCard({
             <img
               src={image}
               alt={`Preview de ${name}`}
+              loading="lazy"
+              decoding="async"
               className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
             />
             {/* Overlay sutil con el nombre */}
@@ -82,7 +84,7 @@ function ProjectCard({
             href={demo}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex-1 flex items-center justify-center gap-1.5 text-sm font-semibold text-primary hover:text-cyan transition-colors py-2 rounded-lg hover:bg-primary/10"
+            className="flex-1 flex items-center justify-center gap-1.5 text-sm font-semibold text-primary hover:text-cyan transition-colors py-3 rounded-lg hover:bg-primary/10"
           >
             <ExternalLink size={14} />
             Ver Web
@@ -92,7 +94,7 @@ function ProjectCard({
               href={repo}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex-1 flex items-center justify-center gap-1.5 text-sm font-semibold text-muted hover:text-text transition-colors py-2 rounded-lg hover:bg-surface"
+              className="flex-1 flex items-center justify-center gap-1.5 text-sm font-semibold text-muted hover:text-text transition-colors py-3 rounded-lg hover:bg-surface"
             >
               <GithubIcon size={14} />
               Código
@@ -130,7 +132,7 @@ export default function Portfolio() {
         </motion.div>
 
         {/* Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {projects.map((project, i) => (
             <ProjectCard key={project.name} {...project} index={i} />
           ))}
