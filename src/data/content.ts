@@ -60,7 +60,7 @@ export const projects = [
     description:
       'Sitio web para restaurante de hot dogs con carta digital interactiva, personalización de pedidos y diseño urbano.',
     stack: [],
-    demo: 'https://donxl-production.up.railway.app',
+    demo: 'https://www.donxl.com',
     repo: null,
     image: '/projects/DonXL.png',
     gradient: 'from-yellow-500 via-orange-500 to-red-500',
