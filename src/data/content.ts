@@ -75,6 +75,16 @@ export const projects = [
     image: '/projects/CafeGaleria.png',
     gradient: 'from-amber-700 via-yellow-700 to-stone-600',
   },
+  {
+    name: 'De Cero a Comediante',
+    description:
+      'Landing page para curso online de stand-up comedy con presentación de módulos, lecciones y checkout de inscripción.',
+    stack: [],
+    demo: 'https://www.artecomedia.com',
+    repo: null,
+    image: '/projects/artecomedia.png',
+    gradient: 'from-amber-500 via-orange-600 to-purple-700',
+  },
 ];
 
 export const techStack = [
