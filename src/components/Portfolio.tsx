@@ -57,11 +57,19 @@ function ProjectCard({
               decoding="async"
               className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
             />
-            {/* Overlay sutil con el nombre */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-            <span className="absolute bottom-3 left-4 font-display font-bold text-xl text-white drop-shadow-lg">
+            {/* Nombre visible en reposo (mobile-safe, sin hover) */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent transition-opacity duration-300 group-hover:opacity-0" />
+            <span className="absolute bottom-3 left-4 font-display font-bold text-xl text-white drop-shadow-lg transition-opacity duration-300 group-hover:opacity-0">
               {name}
             </span>
+            {/* Overlay glass al hacer hover */}
+            <div className="absolute inset-0 flex flex-col justify-end p-5 bg-surface/75 backdrop-blur-md border-t border-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <span className="font-display font-bold text-xl text-white mb-1.5">{name}</span>
+              <span className="inline-flex items-center gap-1.5 text-sm text-cyan font-semibold">
+                <ExternalLink size={14} />
+                Ver proyecto
+              </span>
+            </div>
           </>
         ) : (
           <div className={`w-full h-full bg-gradient-to-br ${gradient} flex items-center justify-center`}>

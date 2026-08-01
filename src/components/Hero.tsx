@@ -65,9 +65,17 @@ export default function Hero() {
 
       {/* Content */}
       <div className="relative z-10 max-w-4xl mx-auto px-5 sm:px-8 text-center mt-[14vh] sm:mt-[18vh] lg:mt-[20vh]">
+        {/* Eyebrow */}
+        <motion.span
+          {...fadeUp(0)}
+          className="inline-block text-primary text-sm font-semibold tracking-widest uppercase mb-5"
+        >
+          Desarrollo Web · IA · Automatización
+        </motion.span>
+
         {/* Headline */}
         <motion.h1
-          {...fadeUp(0)}
+          {...fadeUp(0.05)}
           className="font-display text-5xl sm:text-6xl lg:text-7xl font-extrabold text-text leading-[1.08] mb-6"
         >
           Tu web. Tu bot. Tu IA.{' '}

@@ -12,9 +12,14 @@ const navLinks = [
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [scrollProgress, setScrollProgress] = useState(0);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24);
+    const onScroll = () => {
+      setScrolled(window.scrollY > 24);
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      setScrollProgress(docHeight > 0 ? (window.scrollY / docHeight) * 100 : 0);
+    };
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
@@ -23,10 +28,15 @@ export default function Navbar() {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? 'bg-bg/80 backdrop-blur-md border-b border-border/60 shadow-lg shadow-black/20'
+          ? 'bg-bg/80 backdrop-blur-xl border-b border-border/60 shadow-lg shadow-black/20'
           : 'bg-transparent'
       }`}
     >
+      {/* Barra de progreso de scroll */}
+      <div
+        className="absolute -bottom-px left-0 h-0.5 bg-gradient-to-r from-primary via-cyan to-magenta transition-[width] duration-150 ease-out"
+        style={{ width: `${scrollProgress}%` }}
+      />
       <nav className="max-w-6xl mx-auto px-5 sm:px-8 h-16 flex items-center justify-between">
         {/* Brand */}
         <a

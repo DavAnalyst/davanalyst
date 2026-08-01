@@ -14,11 +14,13 @@ function ServiceCard({
   title,
   description,
   index,
+  featured = false,
 }: {
   icon: string;
   title: string;
   description: string;
   index: number;
+  featured?: boolean;
 }) {
   const reduce = useReducedMotion();
   const Icon = iconMap[icon] ?? Globe;
@@ -30,18 +32,32 @@ function ServiceCard({
       viewport={{ once: true, margin: '-60px' }}
       transition={{ duration: 0.5, delay: index * 0.1, ease: [0.22, 1, 0.36, 1] }}
       whileHover={reduce ? {} : { y: -4 }}
-      className="group relative p-6 rounded-2xl bg-surface border border-border shadow-elevated transition-all duration-300 hover:border-primary/70 hover:shadow-[0_0_30px_rgba(99,102,241,0.2),inset_0_0_30px_rgba(99,102,241,0.04)] cursor-default"
+      className={`group relative rounded-2xl border border-border shadow-elevated transition-all duration-300 hover:border-primary/70 hover:shadow-[0_0_30px_rgba(99,102,241,0.2),inset_0_0_30px_rgba(99,102,241,0.04)] cursor-default overflow-hidden ${
+        featured
+          ? 'sm:col-span-3 p-8 bg-gradient-to-br from-primary/10 via-surface to-surface sm:flex sm:items-center sm:gap-8'
+          : 'p-6 bg-surface'
+      }`}
     >
       {/* Glow top line */}
       <div className="absolute top-0 left-6 right-6 h-px bg-gradient-to-r from-transparent via-primary/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
       {/* Icon */}
-      <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary/20 to-cyan/10 border border-primary/20 flex items-center justify-center mb-5 group-hover:border-primary/50 group-hover:shadow-[0_0_16px_rgba(99,102,241,0.3)] transition-all duration-300">
-        <Icon size={22} className="text-primary" />
+      <div
+        className={`rounded-xl bg-gradient-to-br from-primary/20 to-cyan/10 border border-primary/20 flex items-center justify-center group-hover:border-primary/50 group-hover:shadow-[0_0_16px_rgba(99,102,241,0.3)] transition-all duration-300 flex-shrink-0 ${
+          featured ? 'w-16 h-16 mb-5 sm:mb-0' : 'w-12 h-12 mb-5'
+        }`}
+      >
+        <Icon size={featured ? 28 : 22} className="text-primary" />
       </div>
 
-      <h3 className="font-display font-semibold text-lg text-text mb-2">{title}</h3>
-      <p className="text-muted text-sm leading-relaxed">{description}</p>
+      <div>
+        <h3 className={`font-display font-semibold text-text mb-2 ${featured ? 'text-2xl' : 'text-lg'}`}>
+          {title}
+        </h3>
+        <p className={`text-muted leading-relaxed ${featured ? 'text-base max-w-md' : 'text-sm'}`}>
+          {description}
+        </p>
+      </div>
     </motion.div>
   );
 }
@@ -72,10 +88,10 @@ export default function Services() {
           </p>
         </motion.div>
 
-        {/* Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        {/* Bento grid: primer servicio destacado, ocupa el ancho completo */}
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
           {services.map((service, i) => (
-            <ServiceCard key={service.title} {...service} index={i} />
+            <ServiceCard key={service.title} {...service} index={i} featured={i === 0} />
           ))}
         </div>
       </div>
