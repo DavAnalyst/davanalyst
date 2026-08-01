@@ -66,7 +66,7 @@ export default function Navbar() {
           href={WHATSAPP_URL}
           target="_blank"
           rel="noopener noreferrer"
-          className="hidden md:flex items-center gap-2 bg-primary hover:bg-primary/80 text-white text-sm font-semibold px-4 py-2 rounded-xl transition-all duration-200 hover:shadow-[0_0_24px_rgba(99,102,241,0.45)]"
+          className="hidden md:flex items-center gap-2 bg-primary hover:bg-primary/80 text-bg text-sm font-semibold px-4 py-2 rounded-xl transition-all duration-200 hover:shadow-[0_0_24px_rgba(212,160,23,0.45)]"
         >
           <MessageCircle size={15} />
           Escribir por WhatsApp
@@ -106,7 +106,7 @@ export default function Navbar() {
                 href={WHATSAPP_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 bg-primary text-white text-sm font-semibold px-4 py-3 rounded-xl"
+                className="inline-flex items-center gap-2 bg-primary text-bg text-sm font-semibold px-4 py-3 rounded-xl"
               >
                 <MessageCircle size={15} />
                 WhatsApp

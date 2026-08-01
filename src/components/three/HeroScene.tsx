@@ -20,8 +20,8 @@ export default function HeroScene({ isVisible, eventSource }: Props) {
       eventPrefix="client"
     >
       <ambientLight intensity={0.4} />
-      <pointLight position={[3, 2, 4]} color="#6366F1" intensity={40} />
-      <pointLight position={[-3, -2, -2]} color="#06B6D4" intensity={25} />
+      <pointLight position={[3, 2, 4]} color="#D4A017" intensity={40} />
+      <pointLight position={[-3, -2, -2]} color="#E8C46B" intensity={25} />
       <NetworkGraph />
       <BackgroundParticles />
     </Canvas>

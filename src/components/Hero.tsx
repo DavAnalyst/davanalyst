@@ -103,14 +103,14 @@ export default function Hero() {
             href={WHATSAPP_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="group inline-flex items-center gap-2.5 bg-gradient-to-r from-primary to-cyan text-white font-semibold px-7 py-3.5 rounded-xl transition-all duration-300 hover:shadow-[0_0_30px_rgba(99,102,241,0.5)] hover:scale-105 active:scale-95"
+            className="group inline-flex items-center gap-2.5 bg-gradient-to-r from-primary to-cyan text-bg font-semibold px-7 py-3.5 rounded-xl transition-all duration-300 hover:shadow-[0_0_30px_rgba(212,160,23,0.5)] hover:scale-105 active:scale-95"
           >
             <MessageCircle size={18} />
             Cotizar proyecto
           </a>
           <a
             href="#portafolio"
-            className="inline-flex items-center gap-2.5 border border-border hover:border-primary/60 text-text font-semibold px-7 py-3.5 rounded-xl transition-all duration-300 hover:bg-surface/60 hover:shadow-[0_0_20px_rgba(99,102,241,0.15)]"
+            className="inline-flex items-center gap-2.5 border border-border hover:border-primary/60 text-text font-semibold px-7 py-3.5 rounded-xl transition-all duration-300 hover:bg-surface/60 hover:shadow-[0_0_20px_rgba(212,160,23,0.15)]"
           >
             Ver portafolio
             <ArrowDown size={16} className="animate-bounce" />

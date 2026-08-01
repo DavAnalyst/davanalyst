@@ -32,7 +32,7 @@ function ServiceCard({
       viewport={{ once: true, margin: '-60px' }}
       transition={{ duration: 0.5, delay: index * 0.1, ease: [0.22, 1, 0.36, 1] }}
       whileHover={reduce ? {} : { y: -4 }}
-      className={`group relative rounded-2xl border border-border shadow-elevated transition-all duration-300 hover:border-primary/70 hover:shadow-[0_0_30px_rgba(99,102,241,0.2),inset_0_0_30px_rgba(99,102,241,0.04)] cursor-default overflow-hidden ${
+      className={`group relative rounded-2xl border border-border shadow-elevated transition-all duration-300 hover:border-primary/70 hover:shadow-[0_0_30px_rgba(212,160,23,0.2),inset_0_0_30px_rgba(212,160,23,0.04)] cursor-default overflow-hidden ${
         featured
           ? 'sm:col-span-3 p-8 bg-gradient-to-br from-primary/10 via-surface to-surface sm:flex sm:items-center sm:gap-8'
           : 'p-6 bg-surface'
@@ -43,7 +43,7 @@ function ServiceCard({
 
       {/* Icon */}
       <div
-        className={`rounded-xl bg-gradient-to-br from-primary/20 to-cyan/10 border border-primary/20 flex items-center justify-center group-hover:border-primary/50 group-hover:shadow-[0_0_16px_rgba(99,102,241,0.3)] transition-all duration-300 flex-shrink-0 ${
+        className={`rounded-xl bg-gradient-to-br from-primary/20 to-cyan/10 border border-primary/20 flex items-center justify-center group-hover:border-primary/50 group-hover:shadow-[0_0_16px_rgba(212,160,23,0.3)] transition-all duration-300 flex-shrink-0 ${
           featured ? 'w-16 h-16 mb-5 sm:mb-0' : 'w-12 h-12 mb-5'
         }`}
       >

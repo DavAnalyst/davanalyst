@@ -33,12 +33,12 @@ export default function NetworkGraph() {
     <group ref={groupRef}>
       <lineSegments>
         <edgesGeometry args={[geometry]} />
-        <lineBasicMaterial color="#6366F1" transparent opacity={0.3} />
+        <lineBasicMaterial color="#D4A017" transparent opacity={0.3} />
       </lineSegments>
       {nodePositions.map((pos, i) => (
         <mesh key={i} position={pos}>
           <sphereGeometry args={[0.026, 8, 8]} />
-          <meshStandardMaterial color="#06B6D4" emissive="#06B6D4" emissiveIntensity={0.35} transparent opacity={0.85} />
+          <meshStandardMaterial color="#E8C46B" emissive="#E8C46B" emissiveIntensity={0.35} transparent opacity={0.85} />
         </mesh>
       ))}
     </group>
