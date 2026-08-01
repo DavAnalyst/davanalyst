@@ -35,7 +35,7 @@ export default function WhatsAppButton() {
           hovered ? 'max-w-xs opacity-100' : 'max-w-0 opacity-0'
         }`}
       >
-        ¡Escríbeme ahora!
+        ¡Escríbenos ahora!
       </span>
     </a>
   );

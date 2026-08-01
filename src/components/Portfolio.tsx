@@ -44,7 +44,7 @@ function ProjectCard({
       viewport={{ once: true, margin: '-60px' }}
       transition={{ duration: 0.55, delay: index * 0.12, ease: [0.22, 1, 0.36, 1] as [number,number,number,number] }}
       whileHover={reduce ? {} : { y: -5 }}
-      className="group flex flex-col rounded-2xl bg-surface border border-border shadow-elevated overflow-hidden transition-all duration-300 hover:border-cyan/50 hover:shadow-[0_0_32px_rgba(232,196,107,0.15)]"
+      className="group flex flex-col rounded-xl bg-surface border border-border shadow-elevated overflow-hidden transition-colors duration-200 hover:border-primary"
     >
       {/* Preview — imagen real o gradiente */}
       <div className="relative h-52 overflow-hidden">
@@ -62,10 +62,10 @@ function ProjectCard({
             <span className="absolute bottom-3 left-4 font-display font-bold text-xl text-white drop-shadow-lg transition-opacity duration-300 group-hover:opacity-0">
               {name}
             </span>
-            {/* Overlay glass al hacer hover */}
-            <div className="absolute inset-0 flex flex-col justify-end p-5 bg-surface/75 backdrop-blur-md border-t border-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            {/* Scrim sólido al hacer hover */}
+            <div className="absolute inset-0 flex flex-col justify-end p-5 bg-text/90 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
               <span className="font-display font-bold text-xl text-white mb-1.5">{name}</span>
-              <span className="inline-flex items-center gap-1.5 text-sm text-cyan font-semibold">
+              <span className="inline-flex items-center gap-1.5 font-mono text-sm text-white/90 font-medium">
                 <ExternalLink size={14} />
                 Ver proyecto
               </span>
@@ -128,7 +128,7 @@ export default function Portfolio() {
           transition={{ duration: 0.5 }}
           className="text-center mb-16"
         >
-          <span className="text-cyan text-sm font-semibold tracking-widest uppercase">
+          <span className="font-mono text-cyan text-sm font-medium tracking-widest uppercase">
             Proyectos reales
           </span>
           <h2 className="font-display text-4xl sm:text-5xl font-bold text-text mt-3 mb-4">

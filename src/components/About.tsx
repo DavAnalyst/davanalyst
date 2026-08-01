@@ -2,13 +2,13 @@ import { motion, useReducedMotion } from 'framer-motion';
 import { techStack } from '../data/content';
 
 const categoryColor: Record<string, string> = {
-  frontend: 'border-primary/40 text-primary',
-  backend:  'border-cyan/40 text-cyan',
-  language: 'border-violet-400/40 text-violet-400',
-  database: 'border-blue-400/40 text-blue-400',
-  devops:   'border-muted/40 text-muted',
-  ai:       'border-magenta/40 text-magenta',
-  automation: 'border-cyan/40 text-cyan',
+  frontend: 'border-primary/30 text-primary',
+  backend:  'border-cyan/30 text-cyan',
+  language: 'border-violet-600/30 text-violet-700',
+  database: 'border-blue-600/30 text-blue-700',
+  devops:   'border-muted/30 text-muted',
+  ai:       'border-magenta/30 text-magenta',
+  automation: 'border-cyan/30 text-cyan',
 };
 
 export default function About() {
@@ -29,11 +29,11 @@ export default function About() {
           {...fadeUp(0)}
           className="text-center mb-16"
         >
-          <span className="text-magenta text-sm font-semibold tracking-widest uppercase">
-            Quién soy
+          <span className="font-mono text-magenta text-sm font-medium tracking-widest uppercase">
+            Quiénes somos
           </span>
           <h2 className="font-display text-4xl sm:text-5xl font-bold text-text mt-3">
-            Sobre mí
+            Sobre nosotros
           </h2>
         </motion.div>
 
@@ -41,19 +41,19 @@ export default function About() {
           {/* Bio */}
           <motion.div {...fadeUp(0.1)} className="space-y-5">
             <p className="text-muted leading-relaxed text-lg">
-              Soy <strong className="text-text font-semibold">DavAnalyst</strong>, desarrollador
-              web full-stack apasionado por construir productos digitales que combinan diseño
-              moderno con tecnología de vanguardia.
+              Somos <strong className="text-text font-semibold">DavAnalyst</strong>, un estudio de
+              desarrollo full-stack especializado en construir productos digitales que combinan
+              ingeniería sólida con tecnología de vanguardia.
             </p>
             <p className="text-muted leading-relaxed">
-              Me especializo en transformar ideas en realidad: desde sitios web de alto rendimiento
-              hasta bots inteligentes y flujos de trabajo automatizados con inteligencia artificial.
-              Cada proyecto es una oportunidad de resolver un problema real de manera eficiente y
-              escalable.
+              Nos especializamos en transformar ideas en realidad: desde sitios web de alto
+              rendimiento hasta bots inteligentes y flujos de trabajo automatizados con
+              inteligencia artificial. Cada proyecto es una oportunidad de resolver un problema
+              real de manera eficiente y escalable.
             </p>
             <p className="text-muted leading-relaxed">
-              Trabajo de forma remota con clientes en toda Latinoamérica, entregando soluciones que
-              generan impacto medible desde el primer día.
+              Trabajamos de forma remota con clientes en toda Latinoamérica, entregando soluciones
+              que generan impacto medible desde el primer día.
             </p>
 
           </motion.div>
@@ -81,13 +81,13 @@ export default function About() {
             </div>
 
             {/* Visual decoration */}
-            <div className="relative mt-10 p-5 rounded-2xl border border-white/10 bg-surface/40 backdrop-blur-md shadow-elevated overflow-hidden">
-              <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-primary via-cyan to-magenta" />
+            <div className="relative mt-10 p-5 rounded-xl border border-border bg-surface shadow-elevated overflow-hidden">
+              <div className="absolute top-0 left-0 right-0 h-0.5 bg-primary" />
               <p className="text-text/80 text-sm leading-relaxed">
-                "Creo en el código limpio, en las soluciones que escalan y en los clientes
-                satisfechos. Si tienes una idea, hablemos — puedo convertirla en realidad."
+                "Creemos en el código limpio, en las soluciones que escalan y en los clientes
+                satisfechos. Si tienes una idea, hablemos — podemos convertirla en realidad."
               </p>
-              <p className="text-primary/70 text-xs mt-2 font-semibold">— DavAnalyst</p>
+              <p className="font-mono text-primary/80 text-xs mt-2 font-medium">— Equipo DavAnalyst</p>
             </div>
           </motion.div>
         </div>

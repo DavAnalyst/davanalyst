@@ -28,13 +28,13 @@ export default function Navbar() {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? 'bg-bg/80 backdrop-blur-xl border-b border-border/60 shadow-lg shadow-black/20'
+          ? 'bg-bg/90 backdrop-blur-md border-b border-border shadow-sm'
           : 'bg-transparent'
       }`}
     >
       {/* Barra de progreso de scroll */}
       <div
-        className="absolute -bottom-px left-0 h-0.5 bg-gradient-to-r from-primary via-cyan to-magenta transition-[width] duration-150 ease-out"
+        className="absolute -bottom-px left-0 h-0.5 bg-primary transition-[width] duration-150 ease-out"
         style={{ width: `${scrollProgress}%` }}
       />
       <nav className="max-w-6xl mx-auto px-5 sm:px-8 h-16 flex items-center justify-between">
@@ -66,7 +66,7 @@ export default function Navbar() {
           href={WHATSAPP_URL}
           target="_blank"
           rel="noopener noreferrer"
-          className="hidden md:flex items-center gap-2 bg-primary hover:bg-primary/80 text-bg text-sm font-semibold px-4 py-2 rounded-xl transition-all duration-200 hover:shadow-[0_0_24px_rgba(212,160,23,0.45)]"
+          className="hidden md:flex items-center gap-2 bg-primary hover:bg-cyan text-white text-sm font-semibold px-4 py-2 rounded-lg transition-colors duration-200"
         >
           <MessageCircle size={15} />
           Escribir por WhatsApp
@@ -106,7 +106,7 @@ export default function Navbar() {
                 href={WHATSAPP_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 bg-primary text-bg text-sm font-semibold px-4 py-3 rounded-xl"
+                className="inline-flex items-center gap-2 bg-primary text-white text-sm font-semibold px-4 py-3 rounded-lg"
               >
                 <MessageCircle size={15} />
                 WhatsApp
