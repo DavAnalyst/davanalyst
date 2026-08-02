@@ -102,23 +102,23 @@ function HeroBackground({ reduce }: { reduce: boolean | null }) {
         ref={(el) => {
           blobRefs.current[0] = el;
         }}
-        className="absolute w-[550px] h-[550px] rounded-full opacity-[0.07]"
+        className="absolute w-[600px] h-[600px] rounded-full opacity-[0.18]"
         style={{
           background: 'radial-gradient(circle, #0369A1 0%, transparent 70%)',
-          left: '-8%',
-          top: '5%',
-          filter: 'blur(70px)',
+          left: '-10%',
+          top: '0%',
+          filter: 'blur(50px)',
         }}
       />
       <div
         ref={(el) => {
           blobRefs.current[1] = el;
         }}
-        className="absolute w-[450px] h-[450px] rounded-full opacity-[0.06]"
+        className="absolute w-[500px] h-[500px] rounded-full opacity-[0.15]"
         style={{
           background: 'radial-gradient(circle, #1E3A8A 0%, transparent 70%)',
-          right: '-4%',
-          top: '35%',
+          right: '-6%',
+          top: '30%',
           filter: 'blur(80px)',
         }}
       />
