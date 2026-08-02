@@ -23,7 +23,7 @@ function HeroTerminal({ reduce }: { reduce: boolean | null }) {
     if (reduce) return;
 
     const ctx = gsap.context(() => {
-      const tl = gsap.timeline({ delay: 0.6 });
+      const tl = gsap.timeline({ delay: 0.6, repeat: -1, repeatDelay: 1.8 });
 
       terminalLines.forEach((line, i) => {
         const el = lineRefs.current[i];
@@ -37,13 +37,10 @@ function HeroTerminal({ reduce }: { reduce: boolean | null }) {
       });
 
       if (cursorRef.current) {
-        tl.to(cursorRef.current, { opacity: 1, duration: 0.01 }).to(cursorRef.current, {
-          opacity: 0,
-          duration: 0.5,
-          repeat: -1,
-          yoyo: true,
-          ease: 'steps(1)',
-        });
+        // Parpadeo finito (no infinito) para no bloquear el repeat del timeline padre
+        tl.set(cursorRef.current, { opacity: 1 });
+        tl.to(cursorRef.current, { opacity: 0, duration: 0.4, repeat: 5, yoyo: true, ease: 'steps(1)' });
+        tl.set(cursorRef.current, { opacity: 0 });
       }
     });
 
