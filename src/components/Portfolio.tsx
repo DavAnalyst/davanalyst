@@ -44,7 +44,7 @@ function ProjectCard({
       viewport={{ once: true, margin: '-60px' }}
       transition={{ duration: 0.55, delay: index * 0.12, ease: [0.22, 1, 0.36, 1] as [number,number,number,number] }}
       whileHover={reduce ? {} : { y: -5 }}
-      className="group flex flex-col rounded-xl bg-surface border border-border shadow-elevated overflow-hidden transition-colors duration-200 hover:border-primary"
+      className="group flex flex-col rounded-xl bg-surface border border-border shadow-elevated overflow-hidden transition-[border-color,box-shadow] duration-200 hover:border-primary hover:shadow-[0_16px_40px_-12px_rgba(15,23,42,0.22)]"
     >
       {/* Preview — imagen real o gradiente */}
       <div className="relative h-52 overflow-hidden">
@@ -57,6 +57,10 @@ function ProjectCard({
               decoding="async"
               className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
             />
+            {/* Índice */}
+            <span className="absolute top-3 right-3 font-mono text-xs text-white/80 bg-black/30 px-2 py-1 rounded backdrop-blur-sm">
+              {String(index + 1).padStart(2, '0')}
+            </span>
             {/* Nombre visible en reposo (mobile-safe, sin hover) */}
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent transition-opacity duration-300 group-hover:opacity-0" />
             <span className="absolute bottom-3 left-4 font-display font-bold text-xl text-white drop-shadow-lg transition-opacity duration-300 group-hover:opacity-0">

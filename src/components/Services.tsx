@@ -32,12 +32,17 @@ function ServiceCard({
       viewport={{ once: true, margin: '-60px' }}
       transition={{ duration: 0.5, delay: index * 0.1, ease: [0.22, 1, 0.36, 1] }}
       whileHover={reduce ? {} : { y: -4 }}
-      className={`group relative rounded-xl border border-border shadow-elevated transition-colors duration-200 hover:border-primary cursor-default overflow-hidden ${
+      className={`group relative rounded-xl border border-border shadow-elevated transition-[border-color,box-shadow] duration-200 hover:border-primary hover:shadow-[0_12px_32px_-8px_rgba(15,23,42,0.18)] cursor-default overflow-hidden ${
         featured
-          ? 'sm:col-span-3 p-8 bg-surface sm:flex sm:items-center sm:gap-8'
-          : 'p-6 bg-surface'
+          ? 'sm:col-span-3 p-10 bg-surface sm:flex sm:items-center sm:gap-8'
+          : 'p-7 bg-surface'
       }`}
     >
+      {/* Index */}
+      <span className="absolute top-5 right-6 font-mono text-xs text-border">
+        {String(index + 1).padStart(2, '0')}
+      </span>
+
       {/* Icon */}
       <div
         className={`rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center group-hover:border-primary/50 transition-colors duration-200 flex-shrink-0 ${

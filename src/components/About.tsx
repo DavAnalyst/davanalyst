@@ -1,5 +1,5 @@
 import { motion, useReducedMotion } from 'framer-motion';
-import { techStack } from '../data/content';
+import { techStack, projects } from '../data/content';
 
 const categoryColor: Record<string, string> = {
   frontend: 'border-primary/30 text-primary',
@@ -56,6 +56,21 @@ export default function About() {
               que generan impacto medible desde el primer día.
             </p>
 
+            {/* Stats reales */}
+            <div className="grid grid-cols-3 gap-4 pt-4 border-t border-border">
+              <div>
+                <p className="font-display text-3xl font-bold text-primary">{projects.length}</p>
+                <p className="font-mono text-xs text-muted mt-1">Proyectos</p>
+              </div>
+              <div>
+                <p className="font-display text-3xl font-bold text-primary">{techStack.length}</p>
+                <p className="font-mono text-xs text-muted mt-1">Tecnologías</p>
+              </div>
+              <div>
+                <p className="font-display text-3xl font-bold text-primary">100%</p>
+                <p className="font-mono text-xs text-muted mt-1">Remoto</p>
+              </div>
+            </div>
           </motion.div>
 
           {/* Tech stack */}
