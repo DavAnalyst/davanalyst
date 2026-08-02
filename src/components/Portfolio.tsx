@@ -1,6 +1,11 @@
+import { useEffect, useRef } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
 import { ExternalLink } from 'lucide-react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { projects } from '../data/content';
+
+gsap.registerPlugin(ScrollTrigger);
 
 function GithubIcon({ size = 14 }: { size?: number }) {
   return (
@@ -36,9 +41,29 @@ function ProjectCard({
   index: number;
 }) {
   const reduce = useReducedMotion();
+  const cardRef = useRef<HTMLElement>(null);
+  const imgRef = useRef<HTMLImageElement>(null);
+
+  useEffect(() => {
+    if (reduce || !cardRef.current || !imgRef.current) return;
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        imgRef.current,
+        { clipPath: 'inset(0% 0% 100% 0%)' },
+        {
+          clipPath: 'inset(0% 0% 0% 0%)',
+          duration: 0.9,
+          ease: 'power3.out',
+          scrollTrigger: { trigger: cardRef.current, start: 'top 85%', once: true },
+        }
+      );
+    });
+    return () => ctx.revert();
+  }, [reduce]);
 
   return (
     <motion.article
+      ref={cardRef}
       initial={{ opacity: 0, y: reduce ? 0 : 36 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-60px' }}
@@ -51,6 +76,7 @@ function ProjectCard({
         {image ? (
           <>
             <img
+              ref={imgRef}
               src={image}
               alt={`Preview de ${name}`}
               loading="lazy"

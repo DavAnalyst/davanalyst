@@ -1,9 +1,27 @@
+import { useEffect, useRef } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
 import { MessageCircle } from 'lucide-react';
+import gsap from 'gsap';
 import { WHATSAPP_URL } from '../data/content';
 
 export default function CTASection() {
   const reduce = useReducedMotion();
+  const glowRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (reduce || !glowRef.current) return;
+    const ctx = gsap.context(() => {
+      gsap.to(glowRef.current, {
+        scale: 1.2,
+        opacity: 0.11,
+        duration: 3.5,
+        repeat: -1,
+        yoyo: true,
+        ease: 'sine.inOut',
+      });
+    });
+    return () => ctx.revert();
+  }, [reduce]);
 
   return (
     <section id="contacto" className="py-24 px-5 sm:px-8">
@@ -17,6 +35,7 @@ export default function CTASection() {
         >
           {/* Profundidad sutil, monocromática */}
           <div
+            ref={glowRef}
             className="absolute -top-24 -right-24 w-96 h-96 rounded-full opacity-[0.07] pointer-events-none"
             style={{ background: 'radial-gradient(circle, #FFFFFF 0%, transparent 70%)' }}
             aria-hidden="true"

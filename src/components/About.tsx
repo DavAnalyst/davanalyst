@@ -1,5 +1,10 @@
+import { useEffect, useRef } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { techStack, projects } from '../data/content';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const categoryColor: Record<string, string> = {
   frontend: 'border-primary/30 text-primary',
@@ -11,8 +16,13 @@ const categoryColor: Record<string, string> = {
   automation: 'border-cyan/30 text-cyan',
 };
 
+const statValues = [projects.length, techStack.length, 100];
+const statSuffixes = ['', '', '%'];
+
 export default function About() {
   const reduce = useReducedMotion();
+  const statsRef = useRef<HTMLDivElement>(null);
+  const statRefs = useRef<(HTMLParagraphElement | null)[]>([]);
 
   const fadeUp = (delay = 0) => ({
     initial: { opacity: 0, y: reduce ? 0 : 28 },
@@ -20,6 +30,27 @@ export default function About() {
     viewport: { once: true, margin: '-60px' } as const,
     transition: { duration: 0.55, delay, ease: [0.22, 1, 0.36, 1] as const },
   });
+
+  useEffect(() => {
+    if (reduce || !statsRef.current) return;
+    const ctx = gsap.context(() => {
+      statRefs.current.forEach((el, i) => {
+        if (!el) return;
+        const proxy = { n: 0 };
+        gsap.set(el, { textContent: `0${statSuffixes[i]}` });
+        gsap.to(proxy, {
+          n: statValues[i],
+          duration: 1.4,
+          ease: 'power2.out',
+          onUpdate: () => {
+            el.textContent = `${Math.round(proxy.n)}${statSuffixes[i]}`;
+          },
+          scrollTrigger: { trigger: statsRef.current, start: 'top 85%', once: true },
+        });
+      });
+    });
+    return () => ctx.revert();
+  }, [reduce]);
 
   return (
     <section id="sobre-mi" className="py-24 px-5 sm:px-8">
@@ -56,18 +87,39 @@ export default function About() {
               que generan impacto medible desde el primer día.
             </p>
 
-            {/* Stats reales */}
-            <div className="grid grid-cols-3 gap-4 pt-4 border-t border-border">
+            {/* Stats reales, con contador animado al hacer scroll */}
+            <div ref={statsRef} className="grid grid-cols-3 gap-4 pt-4 border-t border-border">
               <div>
-                <p className="font-display text-3xl font-bold text-primary">{projects.length}</p>
+                <p
+                  ref={(el) => {
+                    statRefs.current[0] = el;
+                  }}
+                  className="font-display text-3xl font-bold text-primary"
+                >
+                  {projects.length}
+                </p>
                 <p className="font-mono text-xs text-muted mt-1">Proyectos</p>
               </div>
               <div>
-                <p className="font-display text-3xl font-bold text-primary">{techStack.length}</p>
+                <p
+                  ref={(el) => {
+                    statRefs.current[1] = el;
+                  }}
+                  className="font-display text-3xl font-bold text-primary"
+                >
+                  {techStack.length}
+                </p>
                 <p className="font-mono text-xs text-muted mt-1">Tecnologías</p>
               </div>
               <div>
-                <p className="font-display text-3xl font-bold text-primary">100%</p>
+                <p
+                  ref={(el) => {
+                    statRefs.current[2] = el;
+                  }}
+                  className="font-display text-3xl font-bold text-primary"
+                >
+                  100%
+                </p>
                 <p className="font-mono text-xs text-muted mt-1">Remoto</p>
               </div>
             </div>

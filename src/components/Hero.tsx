@@ -74,6 +74,58 @@ function HeroTerminal({ reduce }: { reduce: boolean | null }) {
   );
 }
 
+function HeroBackground({ reduce }: { reduce: boolean | null }) {
+  const blobRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+  useEffect(() => {
+    if (reduce) return;
+    const ctx = gsap.context(() => {
+      blobRefs.current.forEach((el, i) => {
+        if (!el) return;
+        gsap.to(el, {
+          x: i % 2 === 0 ? 70 : -60,
+          y: i % 2 === 0 ? -50 : 60,
+          scale: 1.15,
+          duration: 11 + i * 3,
+          repeat: -1,
+          yoyo: true,
+          ease: 'sine.inOut',
+        });
+      });
+    });
+    return () => ctx.revert();
+  }, [reduce]);
+
+  return (
+    <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
+      <div
+        ref={(el) => {
+          blobRefs.current[0] = el;
+        }}
+        className="absolute w-[550px] h-[550px] rounded-full opacity-[0.07]"
+        style={{
+          background: 'radial-gradient(circle, #0369A1 0%, transparent 70%)',
+          left: '-8%',
+          top: '5%',
+          filter: 'blur(70px)',
+        }}
+      />
+      <div
+        ref={(el) => {
+          blobRefs.current[1] = el;
+        }}
+        className="absolute w-[450px] h-[450px] rounded-full opacity-[0.06]"
+        style={{
+          background: 'radial-gradient(circle, #1E3A8A 0%, transparent 70%)',
+          right: '-4%',
+          top: '35%',
+          filter: 'blur(80px)',
+        }}
+      />
+    </div>
+  );
+}
+
 export default function Hero() {
   const reduce = useReducedMotion();
 
@@ -89,6 +141,8 @@ export default function Hero() {
       id="inicio"
       className="relative min-h-screen flex items-center overflow-hidden bg-circuit-grid pt-28 pb-16"
     >
+      <HeroBackground reduce={reduce} />
+
       <div className="relative z-10 max-w-6xl mx-auto px-5 sm:px-8 w-full">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Text column */}

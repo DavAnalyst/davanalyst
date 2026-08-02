@@ -1,6 +1,11 @@
+import { useEffect, useRef } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
 import { Globe, Zap, Bot, Brain } from 'lucide-react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { services } from '../data/content';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const iconMap: Record<string, React.ElementType> = {
   Globe,
@@ -24,9 +29,31 @@ function ServiceCard({
 }) {
   const reduce = useReducedMotion();
   const Icon = iconMap[icon] ?? Globe;
+  const cardRef = useRef<HTMLDivElement>(null);
+  const iconRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (reduce || !cardRef.current || !iconRef.current) return;
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        iconRef.current,
+        { scale: 0.4, opacity: 0, rotate: -12 },
+        {
+          scale: 1,
+          opacity: 1,
+          rotate: 0,
+          duration: 0.6,
+          ease: 'back.out(1.7)',
+          scrollTrigger: { trigger: cardRef.current, start: 'top 85%', once: true },
+        }
+      );
+    });
+    return () => ctx.revert();
+  }, [reduce]);
 
   return (
     <motion.div
+      ref={cardRef}
       initial={{ opacity: 0, y: reduce ? 0 : 32 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-60px' }}
@@ -45,6 +72,7 @@ function ServiceCard({
 
       {/* Icon */}
       <div
+        ref={iconRef}
         className={`rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center group-hover:border-primary/50 transition-colors duration-200 flex-shrink-0 ${
           featured ? 'w-16 h-16 mb-5 sm:mb-0' : 'w-12 h-12 mb-5'
         }`}
