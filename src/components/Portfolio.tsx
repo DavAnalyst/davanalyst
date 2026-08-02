@@ -4,6 +4,7 @@ import { ExternalLink } from 'lucide-react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { projects } from '../data/content';
+import ConstellationBackground from './three/ConstellationBackground';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -69,7 +70,7 @@ function ProjectCard({
       viewport={{ once: true, margin: '-60px' }}
       transition={{ duration: 0.55, delay: index * 0.12, ease: [0.22, 1, 0.36, 1] as [number,number,number,number] }}
       whileHover={reduce ? {} : { y: -5 }}
-      className="group flex flex-col rounded-xl bg-surface border border-border shadow-elevated overflow-hidden transition-[border-color,box-shadow] duration-200 hover:border-primary hover:shadow-[0_16px_40px_-12px_rgba(15,23,42,0.22)]"
+      className="group flex flex-col rounded-xl bg-surface border border-border shadow-elevated overflow-hidden transition-[border-color,box-shadow] duration-200 hover:border-primary hover:shadow-[0_16px_40px_-12px_rgba(56,189,248,0.25)]"
     >
       {/* Preview — imagen real o gradiente */}
       <div className="relative h-52 overflow-hidden">
@@ -93,7 +94,7 @@ function ProjectCard({
               {name}
             </span>
             {/* Scrim sólido al hacer hover */}
-            <div className="absolute inset-0 flex flex-col justify-end p-5 bg-text/90 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            <div className="absolute inset-0 flex flex-col justify-end p-5 bg-bg/90 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
               <span className="font-display font-bold text-xl text-white mb-1.5">{name}</span>
               <span className="inline-flex items-center gap-1.5 font-mono text-sm text-white/90 font-medium">
                 <ExternalLink size={14} />
@@ -146,10 +147,16 @@ function ProjectCard({
 
 export default function Portfolio() {
   const reduce = useReducedMotion();
+  const sectionRef = useRef<HTMLElement>(null);
 
   return (
-    <section id="portafolio" className="py-24 px-5 sm:px-8 bg-surface/20">
-      <div className="max-w-6xl mx-auto">
+    <section
+      ref={sectionRef}
+      id="portafolio"
+      className="relative overflow-hidden py-24 px-5 sm:px-8 bg-surface/20"
+    >
+      <ConstellationBackground sectionRef={sectionRef} />
+      <div className="relative z-10 max-w-6xl mx-auto">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: reduce ? 0 : 24 }}
@@ -161,12 +168,9 @@ export default function Portfolio() {
           <span className="font-mono text-cyan text-sm font-medium tracking-widest uppercase">
             Proyectos reales
           </span>
-          <h2 className="font-display text-4xl sm:text-5xl font-bold text-text mt-3 mb-4">
+          <h2 className="font-display text-4xl sm:text-5xl font-bold text-text mt-3">
             Portafolio
           </h2>
-          <p className="text-muted max-w-xl mx-auto">
-            Una selección de proyectos desplegados en producción con tecnologías modernas.
-          </p>
         </motion.div>
 
         {/* Grid */}

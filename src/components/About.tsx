@@ -3,14 +3,15 @@ import { motion, useReducedMotion } from 'framer-motion';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { techStack, projects } from '../data/content';
+import ConstellationBackground from './three/ConstellationBackground';
 
 gsap.registerPlugin(ScrollTrigger);
 
 const categoryColor: Record<string, string> = {
   frontend: 'border-primary/30 text-primary',
   backend:  'border-cyan/30 text-cyan',
-  language: 'border-violet-600/30 text-violet-700',
-  database: 'border-blue-600/30 text-blue-700',
+  language: 'border-violet-400/30 text-violet-400',
+  database: 'border-blue-400/30 text-blue-400',
   devops:   'border-muted/30 text-muted',
   ai:       'border-magenta/30 text-magenta',
   automation: 'border-cyan/30 text-cyan',
@@ -21,6 +22,7 @@ const statSuffixes = ['', '', '%'];
 
 export default function About() {
   const reduce = useReducedMotion();
+  const sectionRef = useRef<HTMLElement>(null);
   const statsRef = useRef<HTMLDivElement>(null);
   const statRefs = useRef<(HTMLParagraphElement | null)[]>([]);
 
@@ -53,8 +55,26 @@ export default function About() {
   }, [reduce]);
 
   return (
-    <section id="sobre-mi" className="py-24 px-5 sm:px-8">
-      <div className="max-w-6xl mx-auto">
+    <section ref={sectionRef} id="sobre-mi" className="relative overflow-hidden py-24 px-5 sm:px-8">
+      <ConstellationBackground sectionRef={sectionRef} />
+      {/* Scrim: suaviza la constelación detrás del bio para que se lea con claridad */}
+      <div
+        className="absolute inset-0 pointer-events-none lg:hidden"
+        style={{
+          background:
+            'radial-gradient(ellipse 100% 55% at 50% 22%, rgba(15,23,42,0.92) 0%, rgba(15,23,42,0.75) 45%, rgba(15,23,42,0) 78%)',
+        }}
+        aria-hidden="true"
+      />
+      <div
+        className="absolute inset-0 pointer-events-none hidden lg:block"
+        style={{
+          background:
+            'linear-gradient(90deg, rgba(15,23,42,0.9) 0%, rgba(15,23,42,0.7) 35%, rgba(15,23,42,0) 60%)',
+        }}
+        aria-hidden="true"
+      />
+      <div className="relative z-10 max-w-6xl mx-auto">
         {/* Header */}
         <motion.div
           {...fadeUp(0)}
@@ -73,14 +93,8 @@ export default function About() {
           <motion.div {...fadeUp(0.1)} className="space-y-5">
             <p className="text-muted leading-relaxed text-lg">
               Somos <strong className="text-text font-semibold">DavAnalyst</strong>, un estudio de
-              desarrollo full-stack especializado en construir productos digitales que combinan
-              ingeniería sólida con tecnología de vanguardia.
-            </p>
-            <p className="text-muted leading-relaxed">
-              Nos especializamos en transformar ideas en realidad: desde sitios web de alto
-              rendimiento hasta bots inteligentes y flujos de trabajo automatizados con
-              inteligencia artificial. Cada proyecto es una oportunidad de resolver un problema
-              real de manera eficiente y escalable.
+              desarrollo full-stack: sitios web de alto rendimiento, bots inteligentes y
+              automatizaciones con IA, con ingeniería sólida detrás de cada línea de código.
             </p>
             <p className="text-muted leading-relaxed">
               Trabajamos de forma remota con clientes en toda Latinoamérica, entregando soluciones

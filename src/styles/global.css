@@ -1,14 +1,14 @@
 @import "tailwindcss";
 
 @theme {
-  --color-bg: #F8FAFC;
-  --color-primary: #0369A1;
-  --color-cyan: #1E3A8A;
-  --color-magenta: #334155;
-  --color-text: #0F172A;
-  --color-muted: #475569;
-  --color-surface: #FFFFFF;
-  --color-border: #E2E8F0;
+  --color-bg: #0F172A;
+  --color-primary: #38BDF8;
+  --color-cyan: #7DD3FC;
+  --color-magenta: #64748B;
+  --color-text: #F8FAFC;
+  --color-muted: #94A3B8;
+  --color-surface: #1E293B;
+  --color-border: #334155;
 
   --font-sans: "Inter", sans-serif;
   --font-display: "Exo", sans-serif;
@@ -23,8 +23,8 @@
   }
 
   body {
-    background-color: #F8FAFC;
-    color: #0F172A;
+    background-color: #0F172A;
+    color: #F8FAFC;
     font-family: "Inter", sans-serif;
     overflow-x: hidden;
   }
@@ -35,14 +35,14 @@
   }
 
   :focus-visible {
-    outline: 2px solid #0369A1;
+    outline: 2px solid #38BDF8;
     outline-offset: 3px;
     border-radius: 4px;
   }
 
   ::selection {
-    background-color: rgba(3, 105, 161, 0.2);
-    color: #0F172A;
+    background-color: rgba(56, 189, 248, 0.25);
+    color: #F8FAFC;
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -61,13 +61,13 @@
 @layer utilities {
   .bg-circuit-grid {
     background-image:
-      linear-gradient(rgba(15, 23, 42, 0.06) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(15, 23, 42, 0.06) 1px, transparent 1px);
+      linear-gradient(rgba(148, 163, 184, 0.08) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(148, 163, 184, 0.08) 1px, transparent 1px);
     background-size: 60px 60px;
   }
 
   .shadow-elevated {
-    box-shadow: 0 8px 24px -12px rgba(15, 23, 42, 0.12);
+    box-shadow: 0 8px 24px -12px rgba(0, 0, 0, 0.5);
   }
 }
 

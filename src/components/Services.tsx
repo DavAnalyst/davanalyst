@@ -4,6 +4,7 @@ import { Globe, Zap, Bot, Brain } from 'lucide-react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { services } from '../data/content';
+import ConstellationBackground from './three/ConstellationBackground';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -59,7 +60,7 @@ function ServiceCard({
       viewport={{ once: true, margin: '-60px' }}
       transition={{ duration: 0.5, delay: index * 0.1, ease: [0.22, 1, 0.36, 1] }}
       whileHover={reduce ? {} : { y: -4 }}
-      className={`group relative rounded-xl border border-border shadow-elevated transition-[border-color,box-shadow] duration-200 hover:border-primary hover:shadow-[0_12px_32px_-8px_rgba(15,23,42,0.18)] cursor-default overflow-hidden ${
+      className={`group relative rounded-xl border border-border shadow-elevated transition-[border-color,box-shadow] duration-200 hover:border-primary hover:shadow-[0_12px_32px_-8px_rgba(56,189,248,0.22)] cursor-default overflow-hidden ${
         featured
           ? 'sm:col-span-3 p-10 bg-surface sm:flex sm:items-center sm:gap-8'
           : 'p-7 bg-surface'
@@ -94,10 +95,12 @@ function ServiceCard({
 
 export default function Services() {
   const reduce = useReducedMotion();
+  const sectionRef = useRef<HTMLElement>(null);
 
   return (
-    <section id="servicios" className="py-24 px-5 sm:px-8">
-      <div className="max-w-6xl mx-auto">
+    <section ref={sectionRef} id="servicios" className="relative overflow-hidden py-24 px-5 sm:px-8">
+      <ConstellationBackground sectionRef={sectionRef} />
+      <div className="relative z-10 max-w-6xl mx-auto">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: reduce ? 0 : 24 }}
@@ -109,13 +112,9 @@ export default function Services() {
           <span className="font-mono text-primary text-sm font-medium tracking-widest uppercase">
             Qué ofrecemos
           </span>
-          <h2 className="font-display text-4xl sm:text-5xl font-bold text-text mt-3 mb-4">
+          <h2 className="font-display text-4xl sm:text-5xl font-bold text-text mt-3">
             Servicios
           </h2>
-          <p className="text-muted max-w-xl mx-auto">
-            Soluciones digitales a medida: desde sitios web de alto rendimiento hasta bots e
-            integraciones con IA.
-          </p>
         </motion.div>
 
         {/* Bento grid: primer servicio destacado, ocupa el ancho completo */}
