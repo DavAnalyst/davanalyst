@@ -26,10 +26,8 @@ export default function Navbar() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? 'bg-bg/90 backdrop-blur-md border-b border-border shadow-sm'
-          : 'bg-transparent'
+      className={`fixed top-0 left-0 right-0 z-50 bg-bg/85 backdrop-blur-md border-b transition-all duration-300 ${
+        scrolled ? 'border-border shadow-sm' : 'border-transparent'
       }`}
     >
       {/* Barra de progreso de scroll */}
