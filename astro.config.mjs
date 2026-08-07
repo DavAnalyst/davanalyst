@@ -11,7 +11,8 @@ import sitemap from '@astrojs/sitemap';
 export default defineConfig({
   site: 'https://davanlyst.dev',
   output: 'server',
-  adapter: node({ mode: 'standalone', host: true }),
+  adapter: node({ mode: 'standalone' }),
+  server: { host: true },
   integrations: [react(), sitemap()],
 
   vite: {
