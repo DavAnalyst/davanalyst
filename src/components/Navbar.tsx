@@ -3,16 +3,25 @@ import { MessageCircle, Menu, X } from 'lucide-react';
 import { WHATSAPP_URL } from '../data/content';
 
 const navLinks = [
-  { href: '#servicios', label: 'Servicios' },
-  { href: '#portafolio', label: 'Portafolio' },
-  { href: '#sobre-mi', label: 'Sobre mí' },
-  { href: '#contacto', label: 'Contacto' },
+  { href: '#servicios', label: 'Servicios', route: false },
+  { href: '/cursos', label: 'Cursos', route: true },
+  { href: '#portafolio', label: 'Portafolio', route: false },
+  { href: '#sobre-mi', label: 'Sobre mí', route: false },
+  { href: '#contacto', label: 'Contacto', route: false },
 ];
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
+  const [isHome, setIsHome] = useState(true);
+
+  useEffect(() => {
+    setIsHome(window.location.pathname === '/');
+  }, []);
+
+  const resolveHref = (link: (typeof navLinks)[number]) =>
+    link.route ? link.href : isHome ? link.href : `/${link.href}`;
 
   useEffect(() => {
     const onScroll = () => {
@@ -49,7 +58,7 @@ export default function Navbar() {
           {navLinks.map((link) => (
             <li key={link.href}>
               <a
-                href={link.href}
+                href={resolveHref(link)}
                 className="text-muted hover:text-text text-sm font-medium transition-colors duration-200 relative group"
               >
                 {link.label}
@@ -91,7 +100,7 @@ export default function Navbar() {
             {navLinks.map((link) => (
               <li key={link.href} className="border-b border-border/40 last:border-b-0">
                 <a
-                  href={link.href}
+                  href={resolveHref(link)}
                   onClick={() => setMenuOpen(false)}
                   className="text-muted hover:text-text text-sm font-medium transition-colors block py-3"
                 >

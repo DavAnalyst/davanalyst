@@ -1,0 +1,21 @@
+---
+export const prerender = true;
+
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar';
+import Cursos from '../components/Cursos';
+import Footer from '../components/Footer.astro';
+import WhatsAppButton from '../components/WhatsAppButton';
+---
+
+<Layout
+  title="Curso: Sitios web con IA — DavAnalyst"
+  description="Curso en vivo de 3 sesiones: crea páginas web con IA sin saber programar, véndelas y consigue clientes."
+>
+  <Navbar client:load />
+  <main>
+    <Cursos client:load />
+  </main>
+  <Footer />
+  <WhatsAppButton client:load />
+</Layout>

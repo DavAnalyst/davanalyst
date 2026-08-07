@@ -87,6 +87,44 @@ export const projects = [
   },
 ];
 
+export const COURSE_PRICE_USD = 45;
+export const COURSE_PRICE_COP = 180000;
+
+export const courseSyllabus = [
+  {
+    title: 'Páginas web desde cero, sin saber programar',
+    description: 'Arma sitios profesionales usando herramientas de IA, sin escribir código.',
+  },
+  {
+    title: 'Cómo venderlas',
+    description: 'Estructura una oferta clara y un pitch que convierte una web en una venta.',
+  },
+  {
+    title: 'Cómo conseguir clientes',
+    description: 'Canales y tácticas concretas para encontrar a quién venderle.',
+  },
+  {
+    title: 'Desplegar proyectos en producción',
+    description: 'Publica sitios reales, con dominio propio, listos para usarse.',
+  },
+  {
+    title: 'Cómo hacer demos que cierran',
+    description: 'Presenta tu trabajo de forma que genere confianza y cierre el trato.',
+  },
+  {
+    title: 'Herramientas: Claude Code',
+    description: 'El asistente de IA que va a escribir y mantener tu código por ti.',
+  },
+  {
+    title: 'Hyper3D — animaciones 3D',
+    description: 'Dale a tus proyectos un extra visual con animaciones 3D generadas por IA.',
+  },
+  {
+    title: 'Pasarelas de pago',
+    description: 'Integra cobros en línea para que tus clientes puedan vender desde su web.',
+  },
+];
+
 export const techStack = [
   { name: 'React', category: 'frontend' },
   { name: 'TypeScript', category: 'language' },

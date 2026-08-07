@@ -1,0 +1,72 @@
+---
+export const prerender = false;
+
+import Layout from '../../layouts/Layout.astro';
+import { getBookingByReference } from '../../lib/bookings';
+
+const reference = Astro.url.searchParams.get('reference');
+const booking = reference ? await getBookingByReference(reference).catch(() => null) : null;
+
+const statusCopy: Record<string, { title: string; body: string }> = {
+  confirmed: {
+    title: '¡Tu cupo está confirmado!',
+    body: 'Te esperamos en las siguientes fechas. Guarda esta página o toma captura.',
+  },
+  pending: {
+    title: 'Estamos verificando tu pago',
+    body: 'Si ya pagaste, esta página se actualizará a confirmado en unos minutos. Si el problema persiste, escríbenos por WhatsApp.',
+  },
+  cancelled: {
+    title: 'El pago no se completó',
+    body: 'Tu franja fue liberada. Puedes volver a intentar el agendamiento cuando quieras.',
+  },
+};
+
+const formatDate = (iso: string) => {
+  const [y, m, d] = iso.split('-').map(Number);
+  return new Date(Date.UTC(y, m - 1, d)).toLocaleDateString('es-CO', {
+    weekday: 'long',
+    day: 'numeric',
+    month: 'long',
+    timeZone: 'UTC',
+  });
+};
+---
+
+<Layout title="Confirmación de agenda — DavAnalyst">
+  <main class="min-h-screen flex items-center justify-center px-5 py-24 bg-circuit-grid">
+    <div class="max-w-md w-full rounded-xl border border-border bg-surface p-8 text-center">
+      {
+        !reference || !booking ? (
+          <>
+            <h1 class="font-display text-2xl font-bold text-text mb-3">No encontramos esa reserva</h1>
+            <p class="text-muted mb-6">
+              El enlace parece incompleto o inválido. Si acabas de pagar, escríbenos por WhatsApp con tu
+              referencia.
+            </p>
+          </>
+        ) : (
+          <>
+            <h1 class="font-display text-2xl font-bold text-text mb-3">
+              {statusCopy[booking.status].title}
+            </h1>
+            <p class="text-muted mb-6">{statusCopy[booking.status].body}</p>
+            {booking.status !== 'cancelled' && (
+              <ul class="text-left text-text bg-bg/40 rounded-lg border border-border p-4 space-y-2 mb-6">
+                <li class="capitalize">Sesión 1: {formatDate(booking.session1Date)}</li>
+                <li class="capitalize">Sesión 2: {formatDate(booking.session2Date)}</li>
+                <li class="capitalize">Sesión 3: {formatDate(booking.session3Date)}</li>
+              </ul>
+            )}
+          </>
+        )
+      }
+      <a
+        href="/"
+        class="inline-flex items-center justify-center bg-primary text-bg font-semibold px-5 py-3 rounded-lg hover:bg-cyan transition-colors duration-200"
+      >
+        Volver al inicio
+      </a>
+    </div>
+  </main>
+</Layout>
